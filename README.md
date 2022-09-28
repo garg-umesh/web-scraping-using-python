@@ -1,7 +1,7 @@
 # web-scraping-using-python
 Web Scraping Using Python
 
-Steps to do: - 
+# Steps to do: - 
     1. Make empty repo
     2. Install important libraries
     3. Parse product URL's from archive pages including pagination pages
