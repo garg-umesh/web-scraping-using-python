@@ -6,6 +6,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from datetime import datetime
 
 #URL's
 baseURL = 'https://www.thewhiskyexchange.com' # Change as per requirements
@@ -14,7 +15,8 @@ archiveURL = 'https://www.thewhiskyexchange.com/c/35/japanese-whisky?pg=' # Chan
 # Define variables and array's
 productLinkList = []
 singleProductDetailList = []
-noOfPages = 2 # Change as per requirements
+noOfPages = 1 # Change as per requirements
+#fileLocation = 'C:\Users\umesh\OneDrive\Documents'
 
 # Headers to be set with request
 # User-Agent = Browser to be sent as request
@@ -63,4 +65,9 @@ for singleLink in productLinkList:
 
 # Create Data Frame for products data
 df = pd.DataFrame(singleProductDetailList)
-print(df.head(5))
+
+# Create filename as dd-mm-YY H-M-S
+dt_string = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
+
+# Export Data Frame into CSV.
+df.to_csv (fr'C:\Users\umesh\OneDrive\Documents\{dt_string}.csv',index=True, header=True)
