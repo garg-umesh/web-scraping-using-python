@@ -36,3 +36,31 @@ for x in range( 1, noOfPages+1 ):
         # Get Single Product URL and append with Base URL
         for productSinglePageURL in archiveSingleProductBox.find_all('a', href=True):
             productLinkList.append(baseURL + productSinglePageURL['href']) 
+
+# Parse data from Single product page
+for singleLink in productLinkList:
+    # Get Single Product page content
+    r = requests.get(singleLink, headers=headers)
+    soup = BeautifulSoup(r.content, 'lxml')
+
+    # Get product details
+    productName = (soup.find('h1', class_ = 'product-main__name').text.strip())
+    productPrice = (soup.find('p', class_ = 'product-action__price').text.strip())
+    try:
+        productRating = (soup.find('span', class_ = 'review-overview__rating').text.strip())
+    except:
+        productRating = '0'
+
+    # Add data into dictionary
+    singleProductDetails = {
+        'Name': productName,
+        'Price': productPrice,
+        'Rating': productRating
+    }
+    
+    # Store all products data into list
+    singleProductDetailList.append(singleProductDetails)
+
+# Create Data Frame for products data
+df = pd.DataFrame(singleProductDetailList)
+print(df.head(5))
