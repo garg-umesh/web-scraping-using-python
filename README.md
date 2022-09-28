@@ -16,7 +16,7 @@ Web Scraping Using Python
     Install Python (https://www.python.org/) -> select add to path while installing
 
 # Install important libraries
-    1. pip install requests
-    2. pip install bs4
-    3. pip install lxml
-    4. pip install pandas
+1. pip install requests
+2. pip install bs4
+3. pip install lxml
+4. pip install pandas
